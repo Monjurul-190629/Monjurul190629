@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stopwatch</title>
+	<meta name = "viewport" content = "width=device-width" initial-scale="1">
+	<meta charset = "utf-8">
+	<style type="text/css">
+		body{
+			background:linear-gradient(darkblue,blue) no-repeat fixed;
+			margin:0;
+			padding:0;
+			box-sizing:border-box;
+		    text-align:center;
+		    color:white;
+		}
+		.abc{
+			font-size:35px;
+			color:white;
+			text-shadow:0px 0px 25px red;
+			text-decoration: underline;
+			font-weight: 600;
+			margin-top:100px;
+		}
+		.st{
+			background:lightblue;
+			width:140px;
+			padding:12px;
+			margin-left:26px;
+			font-size:18px;
+			font-weight: bold;
+		}
+		button:hover{
+			background:lightgreen;
+		}
+	</style>
+</head>
+<body>
+<p class = "abc">STOPWATCH</p><br>
+<p style = "font-size:29px"><span id = "seconds">00</span>:<span id = "tens">00</span></p>
+<button id = "button-start" class="st">Start</button>
+<button id = "button-stop" class="st">Stop</button>
+<button id = "button-reset" class="st">Reset</button>
+
+<script type="text/javascript">
+	var second = 0;
+	var ten = 0;
+
+	var appendTens = document.getElementById("tens");
+	var appendSeconds = document.getElementById("seconds");
+	var start = document.getElementById("button-start");
+	var stop = document.getElementById("button-stop");
+	var reset = document.getElementById("button-reset");
+
+	function startTimer()
+	{
+		ten++;
+        if(ten<9)
+        {
+        	appendTens.innerHTML = "0"+ten;
+        }
+        if(ten>9)
+        {
+        	appendTens.innerHTML = ten;
+        }
+        if(ten>99)
+        {
+        	second++;
+        	appendSeconds.innerHTML = "0"+second;
+        	appendTens.innerHTML = "0"+0;
+        	ten=0;
+        }
+        if(second>9)
+        {
+            appendSeconds.innerHTML = second;
+        }
+	}
+
+	var interval;
+
+	start.onclick = function()
+	{
+		interval = setInterval(startTimer);
+	}
+	stop.onclick = ()=>clearInterval(interval);
+	reset.onclick = ()=>{
+		clearInterval(interval);
+		appendSeconds.innerHTML="0"+0;
+		appendTens.innerHTML = "0"+0;
+	}
+
+</script>
+</body>
+</html>
